@@ -12,12 +12,14 @@
     "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.6.0",
     "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
     "express": "^4.15.3",
     "express-graphql": "^0.6.6",
     "graphql": "^0.10.4",
     "graphql-server-express": "^1.0.0",
     "graphql-tools": "^1.1.0",
     "start-server-webpack-plugin": "^2.2.0",
+    "subscriptions-transport-ws": "^0.8.1",
     "webpack": "^3.2.0",
     "webpack-node-externals": "^1.6.0"
   }
