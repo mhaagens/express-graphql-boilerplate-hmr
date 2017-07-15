@@ -1,4 +1,3 @@
-import { GraphQLObjectType, GraphQLSchema, GraphQLList } from 'graphql';
 import { makeExecutableSchema } from 'graphql-tools';
 
 import Post from '../types/post';
