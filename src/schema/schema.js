@@ -8,10 +8,10 @@ import DummyComments from '../dummy_data/dummy_comments';
 
 const RootQuery = `
 	type RootQuery {
-		posts: [Post]
-		post(id: Int!): Post
-		comments: [Comment]
-		comment(id: Int!): Comment
+		Posts: [Post]
+		Post(id: Int!): Post
+		Comments: [Comment]
+		Comment(id: Int!): Comment
 	}
 `;
 
@@ -25,17 +25,17 @@ export default makeExecutableSchema({
 	typeDefs: [SchemaDefinition, RootQuery, Post, Comment],
 	resolvers: {
 		RootQuery: {
-			posts: () => {
+			Posts: () => {
 				return DummyPosts;
 			},
-			post: (_, args) => {
+			Post: (_, args) => {
 				let [post] = DummyPosts.filter(p => p.id === args.id);
 				if (post) return post;
 			},
-			comments: () => {
+			Comments: () => {
 				return DummyComments;
 			},
-			comment: (_, args) => {
+			Comment: (_, args) => {
 				let [comment] = DummyComments.filter(c => c.id === args.id);
 				if (comment) return comment;
 			},
