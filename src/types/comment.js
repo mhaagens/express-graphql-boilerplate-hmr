@@ -5,7 +5,7 @@ const Comment = `
     id: Int!
     body: String!
     post_id: Int
-    posts: [Post]
+    post: Post
   }
 `;
 

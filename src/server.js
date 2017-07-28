@@ -6,6 +6,11 @@ import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 
 import schema from './schema/schema';
 
+const PORT = process.env.NODE_ENV === 'production' ? 3030 : 3000;
+const SUBSCRIPTIONS_URL =
+	process.env.NODE_ENV === 'production'
+		? process.env.WS_URL
+		: `ws://localhost:${PORT}/subscriptions`;
 const app = express();
 
 app.use(cors());
@@ -13,7 +18,7 @@ app.use(
 	'/graphiql',
 	graphiqlExpress({
 		endpointURL: '/graphql',
-		subscriptionsEndpoint: `ws://localhost:3000/subscriptions`
+		subscriptionsEndpoint: SUBSCRIPTIONS_URL
 	})
 );
 app.use('/graphql', bodyParser.json(), graphqlExpress({ schema: schema }));

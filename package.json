@@ -5,14 +5,19 @@
   "author": "Martin Haagensli",
   "license": "MIT",
   "scripts": {
-    "start": "webpack --config webpack.config.js"
+    "start": "webpack --config webpack.config.js",
+    "build": "rm -rf ./dist && webpack --config webpack.config.dist.js"
   },
   "dependencies": {
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
+    "babel-plugin-transform-regenerator": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-0": "^6.24.1",
     "body-parser": "^1.17.2",
     "cors": "^2.8.4",
+    "dotenv-safe": "^4.0.4",
     "express": "^4.15.3",
     "express-graphql": "^0.6.6",
     "graphql": "^0.10.4",
