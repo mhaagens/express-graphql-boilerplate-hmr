@@ -4,7 +4,7 @@ import { createServer } from 'http';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
 
 import app from './server';
-import schema from "./schema/schema";
+import schema from './schema/schema';
 
 const server = http.createServer(app);
 let currentApp = app;
@@ -24,7 +24,7 @@ server.listen(3000, () => {
 });
 
 if (module.hot) {
-	module.hot.accept('./server', () => {
+	module.hot.accept(['./server', './schema/schema'], () => {
 		server.removeListener('request', currentApp);
 		server.on('request', app);
 		currentApp = app;
