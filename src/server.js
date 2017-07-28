@@ -11,6 +11,7 @@ const SUBSCRIPTIONS_URL =
 	process.env.NODE_ENV === 'production'
 		? process.env.WS_URL
 		: `ws://localhost:${PORT}/subscriptions`;
+		
 const app = express();
 
 app.use(cors());

@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const StartServerPlugin = require('start-server-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry: ['./src/index'],
@@ -28,6 +29,7 @@ module.exports = {
     plugins: [
         new webpack.NamedModulesPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
+        new Dotenv(),
         new webpack.DefinePlugin({
             'process.env': { 
                 BUILD_TARGET: JSON.stringify('server'),
