@@ -1,13 +1,15 @@
 import { makeExecutableSchema } from 'graphql-tools';
-import pubsub from "../pubsub";
+import pubsub from '../pubsub';
 
 // Types
-import Post from '../types/post';
-import Comment from '../types/comment';
+import Post from '../types/post/post_type';
+import { PostInput } from '../types/post/post_type_extras';
+import Comment from '../types/comment/comment_type';
+import { CommentInput } from '../types/comment/comment_type_extras';
 
 // Controllers
 import PostsController from '../controllers/posts_controller';
-import CommentsController from "../controllers/comments_controller";
+import CommentsController from '../controllers/comments_controller';
 
 const Query = `
 	type Query {
@@ -15,19 +17,6 @@ const Query = `
 		post(id: Int!): Post
 		comments: [Comment]
 		comment(id: Int!): Comment
-	}
-`;
-
-const PostInput = `
-	input PostInput {
-		title: String!
-	}
-`;
-
-const CommentInput = `
-	input CommentInput {
-		body: String!
-		post_id: Int!
 	}
 `;
 
@@ -63,13 +52,16 @@ export default makeExecutableSchema({
 			comment: (_, { id }) => Promise.resolve().then(async () => CommentsController.show(id)).catch(err => err)
 		},
 		Post: {
-			comments: ({id}) => Promise.resolve().then(async () => await PostsController.getPostComments(id)).catch(err => err),
+			comments: ({ id }) =>
+				Promise.resolve().then(async () => await PostsController.getPostComments(id)).catch(err => err)
 		},
 		Comment: {
-			post: ({post_id}) => Promise.resolve().then(async () => await CommentsController.getCommentPost(post_id)).catch(err => err)
+			post: ({ post_id }) =>
+				Promise.resolve().then(async () => await CommentsController.getCommentPost(post_id)).catch(err => err)
 		},
 		Mutation: {
-			addPost: (_, { input }) => Promise.resolve().then(async () => await PostsController.create(input)).catch(err => err),
+			addPost: (_, { input }) =>
+				Promise.resolve().then(async () => await PostsController.create(input)).catch(err => err),
 			addComment: (_, args) => null
 		},
 		Subscription: {

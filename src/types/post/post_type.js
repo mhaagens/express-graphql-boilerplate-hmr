@@ -1,4 +1,4 @@
-import Comment from "./comment";
+import Comment from "../comment/comment_type";
 
 const Post = `
   type Post {
