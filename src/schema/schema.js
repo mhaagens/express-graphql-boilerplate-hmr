@@ -1,15 +1,13 @@
 import { makeExecutableSchema } from 'graphql-tools';
 import pubsub from "../pubsub";
 
+// Types
 import Post from '../types/post';
 import Comment from '../types/comment';
-import DummyPosts from '../dummy_data/dummy_posts';
-import DummyComments from '../dummy_data/dummy_comments';
 
+// Controllers
 import PostsController from '../controllers/posts_controller';
 import CommentsController from "../controllers/comments_controller";
-
-let nextId = 7;
 
 const Query = `
 	type Query {
